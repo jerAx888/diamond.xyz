@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIAMOND</title>
+
+<style>
+
+/* GLOBAL */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:black;
+color:#ffd54f;
+overflow-x:hidden;
+}
+
+/* INTRO SCREEN */
+
+#intro-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+z-index:9999;
+transition:opacity 0.6s ease;
+}
+
+.intro-title{
+font-size:120px;
+letter-spacing:4px;
+color:#ffd54f;
+text-shadow:
+0 0 10px #ffd54f,
+0 0 30px #ffd54f,
+0 0 60px #ffd54f;
+}
+
+.intro-loading{
+margin-top:20px;
+font-size:24px;
+color:#ffd54f;
+}
+
+#enter-btn{
+margin-top:40px;
+padding:14px 40px;
+font-size:20px;
+font-weight:bold;
+background:#ffd54f;
+color:black;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#enter-btn:hover{
+background:#fff176;
+}
+
+.dots::after{
+content:'';
+animation:dots 1.5s steps(4,end) infinite;
+}
+
+@keyframes dots{
+0%{content:'';}
+25%{content:'.';}
+50%{content:'..';}
+75%{content:'...';}
+100%{content:'';}
+}
+
+/* STAR BACKGROUND */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-3;
+
+background-image:
+radial-gradient(2px 2px at 20px 30px,#ffd54f,transparent),
+radial-gradient(2px 2px at 100px 150px,#ffd54f,transparent),
+radial-gradient(2px 2px at 200px 80px,#ffd54f,transparent),
+radial-gradient(2px 2px at 300px 200px,#ffd54f,transparent),
+radial-gradient(2px 2px at 400px 120px,#ffd54f,transparent),
+radial-gradient(2px 2px at 500px 50px,#ffd54f,transparent),
+radial-gradient(2px 2px at 600px 180px,#ffd54f,transparent);
+
+background-repeat:repeat;
+animation:starsMove 120s linear infinite;
+}
+
+@keyframes starsMove{
+from{transform:translateY(0)}
+to{transform:translateY(-2000px)}
+}
+
+/* AI AGENTS */
+
+.ai-left{
+position:fixed;
+left:-120px;
+bottom:-40px;
+height:90vh;
+opacity:0.15;
+pointer-events:none;
+z-index:-2;
+filter:drop-shadow(0 0 40px #ffd54f);
+animation:floatLeft 8s ease-in-out infinite;
+}
+
+.ai-right{
+position:fixed;
+right:-120px;
+bottom:-40px;
+height:90vh;
+opacity:0.15;
+pointer-events:none;
+z-index:-2;
+filter:drop-shadow(0 0 40px #ffd54f);
+animation:floatRight 8s ease-in-out infinite;
+}
+
+@keyframes floatLeft{
+0%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+100%{transform:translateY(0)}
+}
+
+@keyframes floatRight{
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+position:fixed;
+width:100%;
+top:120px;
+z-index:100;
+}
+
+.right-nav{
+display:flex;
+gap:20px;
+}
+
+.x-link{
+font-size:22px;
+font-weight:bold;
+color:#ffd54f;
+text-decoration:none;
+padding:12px 22px;
+border-radius:8px;
+background:rgba(255,213,79,0.1);
+transition:0.3s;
+}
+
+.x-link:hover{
+background:rgba(255,213,79,0.3);
+color:white;
+}
+
+.buy-btn{
+background:#ffd54f;
+color:black;
+padding:14px 30px;
+border-radius:8px;
+font-weight:bold;
+font-size:20px;
+text-decoration:none;
+cursor:pointer;
+transition:0.3s;
+}
+
+.buy-btn:hover{
+background:#fff176;
+}
+
+/* TICKER */
+
+.banner{
+background:#ffd54f;
+color:black;
+overflow:hidden;
+white-space:nowrap;
+width:100%;
+margin-top:56px;
+}
+
+.ticker{
+display:flex;
+width:max-content;
+animation:tickerMove 18s linear infinite;
+font-weight:bold;
+}
+
+.ticker span{
+padding:10px 40px;
+}
+
+@keyframes tickerMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+margin-top:250px;
+padding:60px 20px;
+}
+
+.hero h1{
+font-size:120px;
+letter-spacing:4px;
+text-shadow:
+0 0 10px #ffd54f,
+0 0 30px #ffd54f,
+0 0 60px #ffd54f;
+}
+
+/* CONTRACT */
+
+.contract-box{
+display:inline-flex;
+align-items:center;
+background:#ffd54f;
+color:black;
+padding:12px 18px;
+border-radius:10px;
+margin-top:30px;
+}
+
+.contract-box input{
+border:none;
+background:transparent;
+width:420px;
+font-size:14px;
+outline:none;
+color:black;
+font-weight:bold;
+}
+
+.copy{
+background:black;
+color:#ffd54f;
+border:none;
+padding:8px 12px;
+margin-left:10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.copy:hover{
+background:#333;
+}
+
+/* DRAW SECTION */
+
+.draw-section{
+text-align:center;
+padding:40px 20px;
+}
+
+.draw-controls{
+margin-bottom:20px;
+}
+
+.draw-controls button{
+margin:5px;
+padding:8px 16px;
+border:none;
+border-radius:6px;
+background:#ffd54f;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.draw-controls button:hover{
+background:#fff176;
+}
+
+#drawCanvas{
+display:block;
+margin:20px auto;
+background:black;
+border:2px solid #ffd54f;
+touch-action:none;
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+.hero h1{
+font-size:72px;
+}
+
+.contract-box input{
+width:200px;
+font-size:12px;
+}
+
+.navbar{
+flex-direction:column;
+gap:10px;
+padding:10px 20px;
+top:100px;
+}
+
+#drawCanvas{
+width:90%!important;
+}
+
+.ai-left,
+.ai-right{
+opacity:0.07;
+height:65vh;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<div id="intro-screen">
+
+<h1 class="intro-title">DIAMOND</h1>
+
+<p class="intro-loading">INITIALIZING<span class="dots"></span></p>
+
+<button id="enter-btn">ENTER</button>
+
+</div>
+
+<div class="stars"></div>
+
+<!-- AI AGENTS -->
+
+<img src="diamond.png" class="ai-left">
+<img src="diamond.png" class="ai-right">
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div></div>
+
+<div class="right-nav">
+<a href="https://x.com/_0xgetsumei" target="_blank" class="x-link">TWITTER / X</a>
+<a href="https://pump.fun" target="_blank" class="buy-btn">BUY</a>
+</div>
+
+</div>
+
+<!-- TICKER -->
+
+<div class="banner">
+<div class="ticker">
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+</div>
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>DIAMOND</h1>
+
+<div class="contract-box">
+<input id="contract" value="4TyZGqRLG3VcHTGMcLBoPUmqYitMVojXinAmkL8xpump" readonly>
+<button class="copy" onclick="copyContract()">Copy</button>
+</div>
+
+</div>
+
+<!-- DRAW -->
+
+<div class="draw-section">
+
+<h2>DRAW ANYTHING!</h2>
+
+<div class="draw-controls">
+
+<button onclick="setTool('pen')">Pen</button>
+<button onclick="setTool('eraser')">Eraser</button>
+<button onclick="clearCanvas()">Clear</button>
+<button onclick="saveCanvas()">Save</button>
+
+<label>Color:</label>
+<input type="color" id="colorPicker" value="#ffd54f">
+
+<label>Brush:</label>
+<input type="range" id="brushSize" min="1" max="20" value="3">
+
+</div>
+
+<canvas id="drawCanvas"></canvas>
+
+</div>
+
+<!-- DEXSCREENER -->
+
+<div style="width:100%; height:600px; margin-top:30px;">
+
+<iframe
+src="https://dexscreener.com/solana/ccmh7tvvrrcaexbn6uu3aydzr5p16whjnzclvamhkec4?embed=true&theme=dark"
+style="width:100%; height:100%; border:none; border-radius:10px;">
+</iframe>
+
+</div>
+
+<script>
+
+/* ENTER SITE */
+
+document.getElementById("enter-btn").onclick=function(){
+
+document.getElementById("intro-screen").style.opacity="0";
+
+setTimeout(()=>{
+
+document.getElementById("intro-screen").style.display="none";
+
+},600);
+
+};
+
+/* COPY CONTRACT */
+
+function copyContract(){
+const text=document.getElementById("contract").value;
+navigator.clipboard.writeText(text);
+alert("Contract copied!");
+}
+
+/* DRAWING */
+
+const canvas=document.getElementById('drawCanvas');
+const ctx=canvas.getContext('2d');
+
+let drawing=false;
+let tool='pen';
+let lastX=0;
+let lastY=0;
+
+const colorPicker=document.getElementById('colorPicker');
+const brushSize=document.getElementById('brushSize');
+
+function resizeCanvas(){
+canvas.width=window.innerWidth*0.9;
+canvas.height=400;
+}
+
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+
+function setTool(selectedTool){
+tool=selectedTool;
+}
+
+canvas.addEventListener('pointerdown',(e)=>{
+drawing=true;
+[lastX,lastY]=[e.offsetX,e.offsetY];
+});
+
+canvas.addEventListener('pointermove',draw);
+
+canvas.addEventListener('pointerup',()=>drawing=false);
+canvas.addEventListener('pointerout',()=>drawing=false);
+
+function draw(e){
+
+if(!drawing)return;
+
+ctx.strokeStyle=(tool==='pen')?colorPicker.value:'#000000';
+ctx.lineWidth=(tool==='pen')?brushSize.value:15;
+
+ctx.lineJoin='round';
+ctx.lineCap='round';
+
+ctx.beginPath();
+ctx.moveTo(lastX,lastY);
+ctx.lineTo(e.offsetX,e.offsetY);
+ctx.stroke();
+
+[lastX,lastY]=[e.offsetX,e.offsetY];
+
+}
+
+function clearCanvas(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
+function saveCanvas(){
+const link=document.createElement('a');
+link.download='drawing.png';
+link.href=canvas.toDataURL();
+link.click();
+}
+
+</script>
+
+</body>
+</html>
+```
