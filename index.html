@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DIAMOND</title>
 
 <style>
@@ -16,13 +18,17 @@ box-sizing:border-box;
 font-family:Arial, Helvetica, sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:black;
 color:#ffd54f;
 overflow-x:hidden;
 }
 
-/* INTRO SCREEN */
+/* INTRO */
 
 #intro-screen{
 position:fixed;
@@ -35,25 +41,19 @@ display:flex;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-text-align:center;
 z-index:9999;
-transition:opacity 0.6s ease;
+transition:opacity .6s ease;
 }
 
 .intro-title{
 font-size:120px;
-letter-spacing:4px;
 color:#ffd54f;
-text-shadow:
-0 0 10px #ffd54f,
-0 0 30px #ffd54f,
-0 0 60px #ffd54f;
+text-shadow:0 0 10px #ffd54f,0 0 30px #ffd54f,0 0 60px #ffd54f;
 }
 
 .intro-loading{
 margin-top:20px;
 font-size:24px;
-color:#ffd54f;
 }
 
 #enter-btn{
@@ -66,7 +66,6 @@ color:black;
 border:none;
 border-radius:8px;
 cursor:pointer;
-transition:0.3s;
 }
 
 #enter-btn:hover{
@@ -79,21 +78,21 @@ animation:dots 1.5s steps(4,end) infinite;
 }
 
 @keyframes dots{
-0%{content:'';}
-25%{content:'.';}
-50%{content:'..';}
-75%{content:'...';}
-100%{content:'';}
+0%{content:''}
+25%{content:'.'}
+50%{content:'..'}
+75%{content:'...'}
+100%{content:''}
 }
 
-/* STAR BACKGROUND */
+/* STARS */
 
 .stars{
 position:fixed;
-width:100%;
-height:100%;
 top:0;
 left:0;
+width:100%;
+height:100%;
 z-index:-3;
 
 background-image:
@@ -101,9 +100,7 @@ radial-gradient(2px 2px at 20px 30px,#ffd54f,transparent),
 radial-gradient(2px 2px at 100px 150px,#ffd54f,transparent),
 radial-gradient(2px 2px at 200px 80px,#ffd54f,transparent),
 radial-gradient(2px 2px at 300px 200px,#ffd54f,transparent),
-radial-gradient(2px 2px at 400px 120px,#ffd54f,transparent),
-radial-gradient(2px 2px at 500px 50px,#ffd54f,transparent),
-radial-gradient(2px 2px at 600px 180px,#ffd54f,transparent);
+radial-gradient(2px 2px at 400px 120px,#ffd54f,transparent);
 
 background-repeat:repeat;
 animation:starsMove 120s linear infinite;
@@ -114,14 +111,14 @@ from{transform:translateY(0)}
 to{transform:translateY(-2000px)}
 }
 
-/* AI AGENTS */
+/* AGENTS */
 
 .ai-left{
 position:fixed;
 left:-120px;
 bottom:-40px;
 height:90vh;
-opacity:0.15;
+opacity:.15;
 pointer-events:none;
 z-index:-2;
 filter:drop-shadow(0 0 40px #ffd54f);
@@ -133,7 +130,7 @@ position:fixed;
 right:-120px;
 bottom:-40px;
 height:90vh;
-opacity:0.15;
+opacity:.15;
 pointer-events:none;
 z-index:-2;
 filter:drop-shadow(0 0 40px #ffd54f);
@@ -156,12 +153,12 @@ animation:floatRight 8s ease-in-out infinite;
 
 .navbar{
 display:flex;
-justify-content:space-between;
+justify-content:flex-end;
 align-items:center;
 padding:20px 40px;
 position:fixed;
-width:100%;
 top:120px;
+width:100%;
 z-index:100;
 }
 
@@ -170,19 +167,18 @@ display:flex;
 gap:20px;
 }
 
-.x-link{
-font-size:22px;
+.nav-btn{
+font-size:20px;
 font-weight:bold;
 color:#ffd54f;
 text-decoration:none;
 padding:12px 22px;
 border-radius:8px;
-background:rgba(255,213,79,0.1);
-transition:0.3s;
+background:rgba(255,213,79,.1);
 }
 
-.x-link:hover{
-background:rgba(255,213,79,0.3);
+.nav-btn:hover{
+background:rgba(255,213,79,.3);
 color:white;
 }
 
@@ -194,8 +190,6 @@ border-radius:8px;
 font-weight:bold;
 font-size:20px;
 text-decoration:none;
-cursor:pointer;
-transition:0.3s;
 }
 
 .buy-btn:hover{
@@ -209,8 +203,7 @@ background:#ffd54f;
 color:black;
 overflow:hidden;
 white-space:nowrap;
-width:100%;
-margin-top:56px;
+margin-top:60px;
 }
 
 .ticker{
@@ -239,11 +232,7 @@ padding:60px 20px;
 
 .hero h1{
 font-size:120px;
-letter-spacing:4px;
-text-shadow:
-0 0 10px #ffd54f,
-0 0 30px #ffd54f,
-0 0 60px #ffd54f;
+text-shadow:0 0 10px #ffd54f,0 0 30px #ffd54f,0 0 60px #ffd54f;
 }
 
 /* CONTRACT */
@@ -263,9 +252,8 @@ border:none;
 background:transparent;
 width:420px;
 font-size:14px;
-outline:none;
-color:black;
 font-weight:bold;
+outline:none;
 }
 
 .copy{
@@ -278,19 +266,11 @@ border-radius:6px;
 cursor:pointer;
 }
 
-.copy:hover{
-background:#333;
-}
-
-/* DRAW SECTION */
+/* DRAW */
 
 .draw-section{
 text-align:center;
 padding:40px 20px;
-}
-
-.draw-controls{
-margin-bottom:20px;
 }
 
 .draw-controls button{
@@ -299,13 +279,8 @@ padding:8px 16px;
 border:none;
 border-radius:6px;
 background:#ffd54f;
-color:black;
 font-weight:bold;
 cursor:pointer;
-}
-
-.draw-controls button:hover{
-background:#fff176;
 }
 
 #drawCanvas{
@@ -313,37 +288,39 @@ display:block;
 margin:20px auto;
 background:black;
 border:2px solid #ffd54f;
-touch-action:none;
+}
+
+/* CHART */
+
+.chart-section{
+padding:80px 20px;
+text-align:center;
+}
+
+.chart-container{
+max-width:1200px;
+margin:auto;
+height:600px;
 }
 
 /* MOBILE */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
 .hero h1{
-font-size:72px;
+font-size:70px;
 }
 
 .contract-box input{
 width:200px;
-font-size:12px;
 }
 
 .navbar{
-flex-direction:column;
-gap:10px;
-padding:10px 20px;
 top:100px;
 }
 
 #drawCanvas{
 width:90%!important;
-}
-
-.ai-left,
-.ai-right{
-opacity:0.07;
-height:65vh;
 }
 
 }
@@ -367,30 +344,30 @@ height:65vh;
 
 <div class="stars"></div>
 
-<!-- AI AGENTS -->
-
-<img src="diamondleft.png" class="ai-left">
-<img src="diamondright.png" class="ai-right">
+<img src="diamond.png" class="ai-left">
+<img src="diamond.png" class="ai-right">
 
 <!-- NAVBAR -->
 
 <div class="navbar">
 
-<div></div>
-
 <div class="right-nav">
-<a href="--------------------------------------" target="_blank" class="x-link">TWITTER / X</a>
-<a href="-----------------------------------------" target="_blank" class="buy-btn">BUY</a>
-</div>
+
+<a href="#chart" class="nav-btn">CHART</a>
+
+<a href="https://x.com/_0xgetsumei" target="_blank" class="nav-btn">TWITTER/X</a>
+
+<a href="https://pump.fun" target="_blank" class="buy-btn">BUY</a>
 
 </div>
 
 </div>
 
-<!-- TICKER -->
+<!-- BANNER -->
 
 <div class="banner">
 <div class="ticker">
+
 <span>DIAMOND HANDS MFER – </span>
 <span>DIAMOND HANDS MFER – </span>
 <span>DIAMOND HANDS MFER – </span>
@@ -400,6 +377,9 @@ height:65vh;
 <span>DIAMOND HANDS MFER – </span>
 <span>DIAMOND HANDS MFER – </span>
 <span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+<span>DIAMOND HANDS MFER – </span>
+
 </div>
 </div>
 
@@ -410,8 +390,11 @@ height:65vh;
 <h1>DIAMOND</h1>
 
 <div class="contract-box">
-<input id="contract" value="---------------------" readonly>
+
+<input id="contract" value="4TyZGqRLG3VcHTGMcLBoPUmqYitMVojXinAmkL8xpump" readonly>
+
 <button class="copy" onclick="copyContract()">Copy</button>
+
 </div>
 
 </div>
@@ -420,7 +403,7 @@ height:65vh;
 
 <div class="draw-section">
 
-<h2>DRAW ANYTHING!</h2>
+<h2>DRAW ANYTHING</h2>
 
 <div class="draw-controls">
 
@@ -429,10 +412,7 @@ height:65vh;
 <button onclick="clearCanvas()">Clear</button>
 <button onclick="saveCanvas()">Save</button>
 
-<label>Color:</label>
 <input type="color" id="colorPicker" value="#ffd54f">
-
-<label>Brush:</label>
 <input type="range" id="brushSize" min="1" max="20" value="3">
 
 </div>
@@ -441,104 +421,123 @@ height:65vh;
 
 </div>
 
-<!-- DEXSCREENER -->
+<!-- CHART -->
 
-<div style="width:100%; height:600px; margin-top:30px;">
+<div id="chart" class="chart-section">
+
+<h2 style="font-size:40px;margin-bottom:30px;">LIVE CHART</h2>
+
+<div class="chart-container">
 
 <iframe
-src="----------------------------------?embed=true&theme=dark"
-style="width:100%; height:100%; border:none; border-radius:10px;">
+src="https://dexscreener.com/solana/ccmh7tvvrrcaexbn6uu3aydzr5p16whjnzclvamhkec4?embed=true&theme=dark"
+style="width:100%;height:100%;border:none;border-radius:10px;">
 </iframe>
+
+</div>
 
 </div>
 
 <script>
 
-/* ENTER SITE */
+/* ENTER */
 
 document.getElementById("enter-btn").onclick=function(){
 
 document.getElementById("intro-screen").style.opacity="0";
 
 setTimeout(()=>{
-
 document.getElementById("intro-screen").style.display="none";
-
 },600);
 
-};
+}
 
-/* COPY CONTRACT */
+/* COPY */
 
 function copyContract(){
-const text=document.getElementById("contract").value;
-navigator.clipboard.writeText(text);
-alert("Contract copied!");
+
+const text=document.getElementById("contract").value
+
+navigator.clipboard.writeText(text)
+
+alert("Contract copied!")
+
 }
 
 /* DRAWING */
 
-const canvas=document.getElementById('drawCanvas');
-const ctx=canvas.getContext('2d');
+const canvas=document.getElementById("drawCanvas")
+const ctx=canvas.getContext("2d")
 
-let drawing=false;
-let tool='pen';
-let lastX=0;
-let lastY=0;
+let drawing=false
+let tool="pen"
+let lastX=0
+let lastY=0
 
-const colorPicker=document.getElementById('colorPicker');
-const brushSize=document.getElementById('brushSize');
+const colorPicker=document.getElementById("colorPicker")
+const brushSize=document.getElementById("brushSize")
 
 function resizeCanvas(){
-canvas.width=window.innerWidth*0.9;
-canvas.height=400;
-}
 
-resizeCanvas();
-window.addEventListener('resize',resizeCanvas);
-
-function setTool(selectedTool){
-tool=selectedTool;
-}
-
-canvas.addEventListener('pointerdown',(e)=>{
-drawing=true;
-[lastX,lastY]=[e.offsetX,e.offsetY];
-});
-
-canvas.addEventListener('pointermove',draw);
-
-canvas.addEventListener('pointerup',()=>drawing=false);
-canvas.addEventListener('pointerout',()=>drawing=false);
-
-function draw(e){
-
-if(!drawing)return;
-
-ctx.strokeStyle=(tool==='pen')?colorPicker.value:'#000000';
-ctx.lineWidth=(tool==='pen')?brushSize.value:15;
-
-ctx.lineJoin='round';
-ctx.lineCap='round';
-
-ctx.beginPath();
-ctx.moveTo(lastX,lastY);
-ctx.lineTo(e.offsetX,e.offsetY);
-ctx.stroke();
-
-[lastX,lastY]=[e.offsetX,e.offsetY];
+canvas.width=window.innerWidth*0.9
+canvas.height=400
 
 }
+
+resizeCanvas()
+
+window.addEventListener("resize",resizeCanvas)
+
+function setTool(t){
+
+tool=t
+
+}
+
+canvas.addEventListener("pointerdown",(e)=>{
+
+drawing=true
+lastX=e.offsetX
+lastY=e.offsetY
+
+})
+
+canvas.addEventListener("pointermove",(e)=>{
+
+if(!drawing)return
+
+ctx.strokeStyle=(tool==="pen")?colorPicker.value:"#000"
+ctx.lineWidth=(tool==="pen")?brushSize.value:15
+
+ctx.lineJoin="round"
+ctx.lineCap="round"
+
+ctx.beginPath()
+ctx.moveTo(lastX,lastY)
+ctx.lineTo(e.offsetX,e.offsetY)
+ctx.stroke()
+
+lastX=e.offsetX
+lastY=e.offsetY
+
+})
+
+canvas.addEventListener("pointerup",()=>drawing=false)
+canvas.addEventListener("pointerout",()=>drawing=false)
 
 function clearCanvas(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
 }
 
 function saveCanvas(){
-const link=document.createElement('a');
-link.download='drawing.png';
-link.href=canvas.toDataURL();
-link.click();
+
+const link=document.createElement("a")
+link.download="drawing.png"
+link.href=canvas.toDataURL()
+link.click()
+
 }
 
 </script>
@@ -546,9 +545,3 @@ link.click();
 </body>
 </html>
 ```
-
-
-
-
-
-
